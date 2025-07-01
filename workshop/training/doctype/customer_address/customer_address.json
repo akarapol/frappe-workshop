@@ -1,0 +1,89 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-07-01 13:32:35.254292",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "address",
+  "no",
+  "building",
+  "column_break_psuz",
+  "district",
+  "sub_district",
+  "province",
+  "country",
+  "postal_code"
+ ],
+ "fields": [
+  {
+   "fieldname": "address",
+   "fieldtype": "Small Text",
+   "in_list_view": 1,
+   "label": "Address",
+   "width": "9"
+  },
+  {
+   "fieldname": "no",
+   "fieldtype": "Data",
+   "label": "No.",
+   "length": 20
+  },
+  {
+   "fieldname": "building",
+   "fieldtype": "Data",
+   "label": "Building",
+   "length": 50
+  },
+  {
+   "fieldname": "column_break_psuz",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "district",
+   "fieldtype": "Data",
+   "label": "District",
+   "length": 50
+  },
+  {
+   "fieldname": "sub_district",
+   "fieldtype": "Data",
+   "label": "Sub District",
+   "length": 50
+  },
+  {
+   "fieldname": "province",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Province",
+   "length": 50,
+   "width": "1"
+  },
+  {
+   "fieldname": "postal_code",
+   "fieldtype": "Data",
+   "label": "Postal Code",
+   "length": 5
+  },
+  {
+   "fieldname": "country",
+   "fieldtype": "Link",
+   "label": "Country",
+   "options": "Country"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2025-07-01 13:49:45.187121",
+ "modified_by": "Administrator",
+ "module": "Training",
+ "name": "Customer Address",
+ "owner": "Administrator",
+ "permissions": [],
+ "row_format": "Dynamic",
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

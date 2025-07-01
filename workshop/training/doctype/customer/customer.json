@@ -20,7 +20,9 @@
   "tax_id_thai",
   "column_break_jneg",
   "registered_date",
-  "register_capital"
+  "register_capital",
+  "address_section",
+  "address"
  ],
  "fields": [
   {
@@ -106,12 +108,22 @@
    "fieldname": "register_capital",
    "fieldtype": "Float",
    "label": "Register Capital"
+  },
+  {
+   "fieldname": "address",
+   "fieldtype": "Table",
+   "label": "Address",
+   "options": "Customer Address"
+  },
+  {
+   "fieldname": "address_section",
+   "fieldtype": "Section Break"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-07-01 13:19:58.420860",
+ "modified": "2025-07-01 13:40:02.417858",
  "modified_by": "Administrator",
  "module": "Training",
  "name": "Customer",
