@@ -1,0 +1,137 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-07-01 12:20:30.508366",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "general",
+  "customer_name",
+  "column_break_oykk",
+  "organization_type",
+  "country",
+  "personal_section",
+  "identification_type",
+  "personal_id",
+  "column_break_ovlh",
+  "date_of_birth",
+  "expiry_date",
+  "corporate_section",
+  "tax_id_thai",
+  "column_break_jneg",
+  "registered_date",
+  "register_capital"
+ ],
+ "fields": [
+  {
+   "fieldname": "customer_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Customer Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "organization_type",
+   "fieldtype": "Select",
+   "label": "Organization Type",
+   "options": "None\nPersonal\nCorporate",
+   "reqd": 1
+  },
+  {
+   "fieldname": "country",
+   "fieldtype": "Link",
+   "label": "Country",
+   "options": "Country",
+   "reqd": 1
+  },
+  {
+   "fieldname": "general",
+   "fieldtype": "Section Break",
+   "label": "General"
+  },
+  {
+   "fieldname": "column_break_oykk",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "personal_section",
+   "fieldtype": "Section Break",
+   "label": "Personal Identification"
+  },
+  {
+   "fieldname": "identification_type",
+   "fieldtype": "Select",
+   "label": "Identification Type",
+   "options": "Personal Identification\nPassport"
+  },
+  {
+   "fieldname": "personal_id",
+   "fieldtype": "Data",
+   "label": "Personal Id"
+  },
+  {
+   "fieldname": "column_break_ovlh",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "date_of_birth",
+   "fieldtype": "Date",
+   "label": "Date of Birth"
+  },
+  {
+   "fieldname": "expiry_date",
+   "fieldtype": "Date",
+   "label": "Expiry Date"
+  },
+  {
+   "fieldname": "corporate_section",
+   "fieldtype": "Section Break",
+   "label": "Corporate Identification"
+  },
+  {
+   "fieldname": "tax_id_thai",
+   "fieldtype": "Data",
+   "label": "Tax ID (Thai)"
+  },
+  {
+   "fieldname": "column_break_jneg",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "registered_date",
+   "fieldtype": "Date",
+   "label": "Registered Date"
+  },
+  {
+   "fieldname": "register_capital",
+   "fieldtype": "Float",
+   "label": "Register Capital"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-07-01 13:19:58.420860",
+ "modified_by": "Administrator",
+ "module": "Training",
+ "name": "Customer",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}
