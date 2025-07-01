@@ -20,7 +20,7 @@ frappe.ui.form.on("Customer", {
 				frm.refresh_field("identification_type");
 			}
 		} else {
-      // If country is Thailand, identification type must be Passport
+			// If country is not Thailand, identification type must be Passport
 			if (identificationType !== "Passport") {
 				frm.set_value("identification_type", "Passport");
 				frm.refresh_field("identification_type");
@@ -28,6 +28,45 @@ frappe.ui.form.on("Customer", {
 		}
 	}
 });
+
+frappe.ui.form.on("Customer Address", {
+	no: function(frm, cdt, cdn) {
+		fill_address(frm, cdt, cdn);
+	},
+	building: function(frm, cdt, cdn) {
+		fill_address(frm, cdt, cdn);
+	},
+	district: function(frm, cdt, cdn) {
+		fill_address(frm, cdt, cdn);
+	},
+	sub_district: function(frm, cdt, cdn) {
+		fill_address(frm, cdt, cdn);
+	},
+	province: function(frm, cdt, cdn) {
+		fill_address(frm, cdt, cdn);
+	},
+	country: function(frm, cdt, cdn) {
+		fill_address(frm, cdt, cdn);
+	},
+	postal_code: function(frm, cdt, cdn) {
+		fill_address(frm, cdt, cdn);
+	}	
+});
+
+function fill_address(frm, cdt, cdn) {
+	const row = frappe.get_doc(cdt, cdn);
+	let address = '';
+	
+	if (row.no) address += row.no + ' ';
+	if (row.building) address += row.building + ' ';
+	if (row.district) address += row.district + ' ';
+	if (row.sub_district) address += row.sub_district + ' ';
+	if (row.province) address += row.province + ' ';
+	if (row.country) address += row.country + ' ';
+	if (row.postal_code) address += row.postal_code + ' ';
+
+	row.address = address.trim();
+}
 
 function togglePersonalCorporate(frm) {
 	const type = frm.doc.organization_type;
