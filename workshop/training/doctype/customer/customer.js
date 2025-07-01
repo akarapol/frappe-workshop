@@ -2,6 +2,12 @@
 // For license information, please see license.txt
 
 frappe.ui.form.on("Customer", {
+	refresh: function(frm) {
+		// Add custom button "Customer Balance"
+		frm.add_custom_button("Customer Balance", () => {
+			show_customerbalance_dialog(frm)
+		});
+	},
 	onload: function(frm) {
 		togglePersonalCorporate(frm);
 	},
@@ -52,6 +58,32 @@ frappe.ui.form.on("Customer Address", {
 		fill_address(frm, cdt, cdn);
 	}	
 });
+
+function show_customerbalance_dialog() {
+			// Create a dialog with a date field
+			let d = new frappe.ui.Dialog({
+				title: "Customer Balance",
+				fields: [
+					{
+						fieldtype: "Date",
+						fieldname: "as_of_date",
+						label: "As Of Date",
+						reqd: true,
+						default: frappe.datetime.nowdate()
+					}
+				],
+				primary_action: () => {
+					values = d.get_values()
+					frappe.show_alert(__("Request Server to Calculate Customer Balance"))
+					//TODO: call function on server soon.
+					console.log(values["as_of_date"])
+
+					// Hide the dialog when the primary button is clicked
+					d.hide();
+				}
+			});
+			d.show();
+}
 
 function fill_address(frm, cdt, cdn) {
 	const row = frappe.get_doc(cdt, cdn);
