@@ -8,6 +8,7 @@
   "disabled",
   "general",
   "customer_name",
+  "credit_limit",
   "column_break_oykk",
   "organization_type",
   "country",
@@ -126,12 +127,17 @@
    "fieldtype": "Check",
    "label": "Disabled",
    "read_only": 1
+  },
+  {
+   "fieldname": "credit_limit",
+   "fieldtype": "Float",
+   "label": "Credit Limit"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-07-01 20:14:41.292144",
+ "modified": "2025-07-02 09:56:56.492995",
  "modified_by": "Administrator",
  "module": "Training",
  "name": "Customer",

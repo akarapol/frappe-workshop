@@ -3,6 +3,7 @@
 
 import frappe
 from frappe.model.document import Document
+import frappe.utils
 
 
 class Customer(Document):
@@ -22,3 +23,11 @@ class Customer(Document):
 	def toggle_customer_status(self):
 		self.disabled = not self.disabled
 		self.save()
+
+	@frappe.whitelist()
+	def balance(self):
+		customer = frappe.get_doc("Customer",self.name)
+		invoices = frappe.get_list("Customer Invoice",fields=["invoice_amount","invoice_date", "closed"],filters={"customer":customer.name})
+		open_invoice_amount = sum([inv["invoice_amount"] for inv in invoices if not inv["closed"]])
+		
+		return (customer.credit_limit - open_invoice_amount)

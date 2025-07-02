@@ -5,7 +5,7 @@ frappe.ui.form.on("Customer", {
 	refresh: function(frm) {
 		// Add custom button "Customer Balance"
 		frm.add_custom_button("Customer Balance", () => {
-			show_customerbalance_dialog(frm)
+			checkCustomerBalance(frm)
 		});
 		frm.add_custom_button("Enable/Disable",()=>{
 			toggleCustomerStatus(frm)
@@ -62,10 +62,10 @@ frappe.ui.form.on("Customer Address", {
 	}	
 });
 
-function show_customerbalance_dialog() {
+function checkCustomerBalance(frm) {
 			// Create a dialog with a date field
 			let d = new frappe.ui.Dialog({
-				title: "Customer Balance",
+				title: "Check Customer Balance",
 				fields: [
 					{
 						fieldtype: "Date",
@@ -77,10 +77,24 @@ function show_customerbalance_dialog() {
 				],
 				primary_action: () => {
 					values = d.get_values()
-					frappe.show_alert(__("Request Server to Calculate Customer Balance"))
-					//TODO: call function on server soon.
-					console.log(values["as_of_date"])
 
+					frappe.call({
+						method: "balance",
+						doc: frm.doc,
+						args: {
+							as_of_date: values["as_of_date"],
+						},
+						callback: (r)=>{
+							//TODO: call function on server soon.
+							console.log(r)
+							frappe.msgprint({
+									title: __('Customer Balance as of ' + values["as_of_date"]),
+									indicator: 'green',
+									message: __('<h2>Customer balance is: </h4><h2 style="padding:4px; background-color:#76b8bc; color:white"> ' + r.message + '</h2>')
+							});
+						}
+					})
+					frappe.show_alert(__("Request Server to Calculate Customer Balance"))
 					// Hide the dialog when the primary button is clicked
 					d.hide();
 				}
