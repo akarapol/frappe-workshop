@@ -3,6 +3,7 @@
 
 import frappe
 from frappe.model.document import Document
+from frappe.query_builder.functions import Sum
 import frappe.utils
 
 
@@ -26,8 +27,13 @@ class Customer(Document):
 
 	@frappe.whitelist()
 	def balance(self):
-		customer = frappe.get_doc("Customer",self.name)
-		invoices = frappe.get_list("Customer Invoice",fields=["invoice_amount","invoice_date", "closed"],filters={"customer":customer.name})
-		open_invoice_amount = sum([inv["invoice_amount"] for inv in invoices if not inv["closed"]])
+		cust_invoice = frappe.qb.DocType("Customer Invoice")
+
+		query = (frappe.qb.from_(cust_invoice)
+					 .select(Sum(cust_invoice.invoice_amount).as_("sum_invoice_amount"))
+					 .where(cust_invoice.customer == self.name)
+					 .where(cust_invoice.closed == False))
 		
-		return (customer.credit_limit - open_invoice_amount)
+		# print(f"\n\n {query.get_sql()} \n\n")
+
+		return (self.credit_limit - query.run(as_dict=True)[0].sum_invoice_amount)
