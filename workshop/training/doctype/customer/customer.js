@@ -70,7 +70,7 @@ function checkCustomerBalance(frm) {
 					{
 						fieldtype: "Date",
 						fieldname: "as_of_date",
-						label: "As Of Date",
+						label: __("As Of Date"),
 						reqd: true,
 						default: frappe.datetime.nowdate()
 					}
@@ -145,6 +145,6 @@ function toggleCustomerStatus(frm) {
 					})
 			}, () => {
 					// NO
-					frappe.show_alert("Do Nothing !!!")
+					frappe.show_alert(__("Do Nothing !!!"))
 			})	
 }

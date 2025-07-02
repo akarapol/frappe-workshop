@@ -5,7 +5,7 @@ import frappe
 from frappe.model.document import Document
 from frappe.query_builder.functions import Sum
 import frappe.utils
-
+from frappe import _
 
 class Customer(Document):
 	def validate(self):
@@ -16,9 +16,9 @@ class Customer(Document):
 		"""
 		if self.identification_type == "Personal Identification":
 			if not self.date_of_birth:
-				frappe.throw("Date of Birth is required when Identification Type is Personal Identification.")
+				frappe.throw(_("Date of Birth is required when Identification Type is Personal Identification."))
 			if self.date_of_birth and self.date_of_birth > frappe.utils.today():
-				frappe.throw("Date of Birth cannot be in the future.")
+				frappe.throw(_("Date of Birth cannot be in the future."))
 	
 	@frappe.whitelist()
 	def toggle_customer_status(self):
