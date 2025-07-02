@@ -19,7 +19,7 @@ class Customer(Document):
 				frappe.throw(_("Date of Birth is required when Identification Type is Personal Identification."))
 			if self.date_of_birth and self.date_of_birth > frappe.utils.today():
 				frappe.throw(_("Date of Birth cannot be in the future."))
-	
+
 	@frappe.whitelist()
 	def toggle_customer_status(self):
 		self.disabled = not self.disabled
