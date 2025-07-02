@@ -1,7 +1,7 @@
 # Copyright (c) 2025, Akarapol Kasvittayanun and contributors
 # For license information, please see license.txt
 
-# import frappe
+import frappe
 from frappe.model.document import Document
 
 
@@ -17,4 +17,8 @@ class Customer(Document):
 				frappe.throw("Date of Birth is required when Identification Type is Personal Identification.")
 			if self.date_of_birth and self.date_of_birth > frappe.utils.today():
 				frappe.throw("Date of Birth cannot be in the future.")
-
+	
+	@frappe.whitelist()
+	def toggle_customer_status(self):
+		self.disabled = not self.disabled
+		self.save()

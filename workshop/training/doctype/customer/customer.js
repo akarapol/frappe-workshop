@@ -7,6 +7,9 @@ frappe.ui.form.on("Customer", {
 		frm.add_custom_button("Customer Balance", () => {
 			show_customerbalance_dialog(frm)
 		});
+		frm.add_custom_button("Enable/Disable",()=>{
+			toggleCustomerStatus(frm)
+		});
 	},
 	onload: function(frm) {
 		togglePersonalCorporate(frm);
@@ -113,4 +116,21 @@ function togglePersonalCorporate(frm) {
 		frm.set_df_property("corporate_section", "hidden", 1);
 		frm.set_df_property("personal_section", "hidden", 1);
 	}
+}
+
+function toggleCustomerStatus(frm) {
+	frappe.confirm('Are you sure you want to proceed?',
+			() => {
+					// YES
+					frappe.call({
+						doc: frm.doc,
+						method: "toggle_customer_status",
+						callback: () =>{
+							frm.refresh()
+						}
+					})
+			}, () => {
+					// NO
+					frappe.show_alert("Do Nothing !!!")
+			})	
 }
